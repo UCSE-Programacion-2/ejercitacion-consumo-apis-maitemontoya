@@ -6,16 +6,6 @@
 // 2. Al recibir la respuesta, convertirla a JSON con response.json().
 // 3. Invocar renderizarDatosUsuario() pasándole el objeto JSON completo.
 
-fetch('http://localhost:3000/api/user')
-  .then((response) => response.json())
-  .then((datos) => {
-    console.log(datos);
-    renderizarDatosUsuario(datos);
-  })
-  .catch((error) => {
-    console.error('Error al obtener el usuario:', error);
-  });
-
 // 4. Desarrollar renderizarDatosUsuario(datos):
 //    - Obtener el usuario desde datos.results[0].
 //    - Seleccionar el contenedor con document.querySelector('.tarjeta').
@@ -52,6 +42,22 @@ function renderizarDatosUsuario(datos) {
 // 3. Al hacer clic en el botón, se debe realizar un nuevo pedido a la API
 //    y actualizar la tarjeta sin recargar la página.
 
+// Escribe aquí tu código para realizar un nuevo pedido a la API y actualizar la tarjeta
+
 function cargarUsuario() {
-  // Escribe aquí tu código para realizar un nuevo pedido a la API y actualizar la tarjeta
+  fetch('http://localhost:3000/api/user')
+    .then((response) => response.json())
+    .then((datos) => {
+      console.log(datos);
+      renderizarDatosUsuario(datos);
+    })
+    .catch((error) => {
+      console.error('Error al obtener el usuario:', error);
+    });
 }
+
+const botonRandom = document.querySelector('#random');
+
+botonRandom.addEventListener('click', cargarUsuario);
+
+cargarUsuario();
